@@ -1,8 +1,10 @@
+from mcp import types
+from mcp.server import FastMCP
 from mcp.server import Server
 from mcp.server.sse import SseServerTransport
 from starlette.applications import Starlette
-from starlette.routing import Mount, Route
-from mcp import types
+from starlette.routing import Mount
+from starlette.routing import Route
 
 import logging
 
@@ -51,6 +53,17 @@ async def handle_get_prompt(
             )
         ]
     )
+
+@app.list_tools()
+async def list_tools() -> list[types.Tool]:
+    ...
+
+# first argument is tool name, the second is a dict of arguments
+@app.call_tool()
+async def handle_call_tool(tool_name: str, arguments):
+    print(tool_name)
+    print(arguments)
+    return [types.TextContent(text=f"Hello {tool_name}", type="text")]
 
 
 starlette_app = Starlette(

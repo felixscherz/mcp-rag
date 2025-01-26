@@ -4,7 +4,7 @@ import asyncio
 import logging
 logger = logging.getLogger()
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 
 async def connect(endpoint: str):
@@ -12,8 +12,19 @@ async def connect(endpoint: str):
         async with ClientSession(streams[0], streams[1]) as session:
             await session.initialize()
 
-            res = await session.list_prompts()
-            print(res)
+            while True:
+                what = input("what to do? ")
+                if what == "list":
+                    res = await session.list_prompts()
+                    print(res)
+                elif what == "tools":
+                    res = await session.list_tools()
+                    print(res)
+
+                else:
+                    res = await session.call_tool(what, {"message": "abc"})
+                    print(res)
+
 
 
 if __name__ == "__main__":
