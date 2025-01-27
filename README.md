@@ -1,8 +1,20 @@
 # mcp-rag
 
+[![smithery badge](https://smithery.ai/badge/@felixscherz/mcp-rag)](https://smithery.ai/server/@felixscherz/mcp-rag)
+
 Connecting a RAG application to open-webui by means of MCP
 
 ## 1. Bare bones MCP PoC / Hello World
+
+### Installing via Smithery
+
+To install mcp-rag for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@felixscherz/mcp-rag):
+
+```bash
+npx -y @smithery/cli install @felixscherz/mcp-rag --client claude
+```
+
+### Installing Manually
 
 ```bash
 pip install mcp[cli]
@@ -42,3 +54,4 @@ some context.
 
 
 ## 3. MCP Client + Open-WebUI
+
